@@ -28,4 +28,6 @@ public class NotaResource {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
+    
 }
