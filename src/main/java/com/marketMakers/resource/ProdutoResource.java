@@ -17,7 +17,7 @@ public class ProdutoResource {
     @Autowired
     private ProdutoService produtoService;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/banana", method = RequestMethod.GET)
     public ResponseEntity find() {
         try {
         	
