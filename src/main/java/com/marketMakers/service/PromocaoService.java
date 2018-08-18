@@ -1,7 +1,6 @@
 package com.marketMakers.service;
 
 import java.util.Date;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +18,8 @@ public class PromocaoService {
 		return promocaoRepository.findAll();
 	}
 
-	public Optional<Promocao> obterPromocao(Long id) {
-		return promocaoRepository.findById(id);
+	public Promocao obterPromocao(Long id) {
+		return promocaoRepository.findOne(id);
 	}
 
 	public Promocao salvarPromocao(Promocao promocao) {
@@ -28,20 +27,20 @@ public class PromocaoService {
 	}
 
 	public Promocao atualizarPromocao(Long id, Promocao promo) {
-		Optional<Promocao> promocao = promocaoRepository.findById(id);
-		if (promocao.isPresent() && promo != null) {
-			promocao.get().setDataEdicao(new Date());
-			promocao.get().setDescricao(promo.getDescricao());
-			promocao.get().setTipo(promo.getTipo());
-			promocao.get().setValor(promo.getValor());
+		Promocao promocao = promocaoRepository.findOne(id);
+		if (promocao != null && promo != null) {
+			promocao.setDataEdicao(new Date());
+			promocao.setDescricao(promo.getDescricao());
+			promocao.setTipo(promo.getTipo());
+			promocao.setValor(promo.getValor());
 			//promocao.get().setEstabelecimento();
-			promo = promocaoRepository.save(promocao.get());
+			promo = promocaoRepository.save(promocao);
 		}
 		return promo;
 	}
 
 	public void deletarPromocao(Long id) {
-		Optional<Promocao> promocao = promocaoRepository.findById(id);
-		promocaoRepository.delete(promocao.get());
+		Promocao promocao = promocaoRepository.findOne(id);
+		promocaoRepository.delete(promocao);
 	}
 }

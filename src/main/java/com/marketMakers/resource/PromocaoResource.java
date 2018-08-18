@@ -22,7 +22,7 @@ public class PromocaoResource {
 	@Autowired
 	private PromocaoService promocaoService;
 	
-	 @RequestMapping(value = "/api/promocao/", method = RequestMethod.GET)
+	 @RequestMapping(value = "/api/promocao", method = RequestMethod.GET)
 	    public ResponseEntity<?> findAll() {
 	        try {
 	            Iterable<Promocao> result = promocaoService.obterTodasPromocoes();
@@ -35,7 +35,7 @@ public class PromocaoResource {
 	 @RequestMapping(value = "/api/promocao/{id}", method = RequestMethod.GET)
 	    public ResponseEntity<?> findOne(@PathVariable("id") Long id) {
 	        try {
-	        	Optional<Promocao> result = promocaoService.obterPromocao(id);
+	        	Promocao result = promocaoService.obterPromocao(id);
 	            return new ResponseEntity<>(result, HttpStatus.OK);
 	        } catch (Exception ex) {
 	            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
