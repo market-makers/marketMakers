@@ -15,10 +15,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name= "Produto")
+@Table(name= "produto")
 public class Produto implements Serializable{
 	
 	private static final long serialVersionUID = 2651988426142516293L;
+
+	public Produto() {
+
+	}
 
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)

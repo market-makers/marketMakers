@@ -18,6 +18,9 @@ import javax.persistence.Table;
 public class Categoria implements Serializable{
 	
 	private static final long serialVersionUID = 8347622137228270297L;
+	
+	public Categoria() {
+	}
 
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
