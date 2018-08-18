@@ -5,7 +5,9 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.marketMakers.model.Estabelecimento;
 import com.marketMakers.model.Promocao;
+import com.marketMakers.repository.EstabelecimentoRepository;
 import com.marketMakers.repository.PromocaoRepository;
 
 @Service
@@ -13,7 +15,9 @@ public class PromocaoService {
 	
 	@Autowired
 	private PromocaoRepository promocaoRepository;
-
+	@Autowired
+	private EstabelecimentoRepository estabelecimentoRepository;
+	
 	public Iterable<Promocao> obterTodasPromocoes() {
 		return promocaoRepository.findAll();
 	}
@@ -33,7 +37,10 @@ public class PromocaoService {
 			promocao.setDescricao(promo.getDescricao());
 			promocao.setTipo(promo.getTipo());
 			promocao.setValor(promo.getValor());
-			//promocao.get().setEstabelecimento();
+			Estabelecimento estabelecimento = estabelecimentoRepository.findOne(promo.getEstabelecimento().getId());
+			if (estabelecimento != null) {
+				promocao.setEstabelecimento(estabelecimento);
+			}
 			promo = promocaoRepository.save(promocao);
 		}
 		return promo;
