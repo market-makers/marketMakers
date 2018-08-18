@@ -1,4 +1,4 @@
-package com.marketMakers.marketMakers.entitys;
+package com.marketMakers.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

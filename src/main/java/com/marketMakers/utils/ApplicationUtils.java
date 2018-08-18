@@ -1,4 +1,4 @@
-package com.marketMakers.marketMakers.utils;
+package com.marketMakers.utils;
 
 public class ApplicationUtils {
 
