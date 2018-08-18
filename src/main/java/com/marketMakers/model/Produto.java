@@ -1,10 +1,8 @@
 package com.marketMakers.model;
 
-import java.io.Serializable;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-
-import javax.persistence.*;
 
 @Entity
 @Table(name = "produto")
@@ -13,19 +11,13 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(name = "nome")
     private String nome;
-
-    @Column(name = "valor")
     private BigDecimal valor;
-
+    private Long quantidade;
     @ManyToOne
     private Categoria categoria;
-
     @Column(name = "data_criacao")
     private Date dataCriacao;
-
     @Column(name = "data_edicao")
     private Date dataEdicao;
 
@@ -79,6 +71,14 @@ public class Produto {
 
     public void setDataEdicao(Date dataEdicao) {
         this.dataEdicao = dataEdicao;
+    }
+
+    public Long getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Long quantidade) {
+        this.quantidade = quantidade;
     }
 
     @Override

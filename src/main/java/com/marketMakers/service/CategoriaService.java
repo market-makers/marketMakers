@@ -1,5 +1,6 @@
 package com.marketMakers.service;
 
+import com.marketMakers.model.Categoria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ public class CategoriaService {
     @Autowired
     CategoriaRepository repository;
 
-    public Iterable<Nota> findAll() {
+    public Iterable<Categoria> findAll() {
         return repository.findAll();
     }
 }

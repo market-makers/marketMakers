@@ -1,11 +1,9 @@
 package com.marketMakers.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "nota")
 public class Nota implements Serializable {
@@ -15,6 +13,12 @@ public class Nota implements Serializable {
     private Long id;
     private String codigoNota;
     private Date data;
+
+    @ManyToOne
+    private Estabelecimento estabelecimento;
+
+    @ManyToMany
+    private List<Produto> produtos;
 
     public Nota() {
     }
@@ -41,5 +45,21 @@ public class Nota implements Serializable {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
+    public Estabelecimento getEstabelecimento() {
+        return estabelecimento;
+    }
+
+    public void setEstabelecimento(Estabelecimento estabelecimento) {
+        this.estabelecimento = estabelecimento;
     }
 }

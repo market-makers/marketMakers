@@ -5,10 +5,7 @@ import com.marketMakers.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(maxAge = 3600)
 @RestController
@@ -18,7 +15,7 @@ public class ProdutoResource {
     private ProdutoService produtoService;
 
     @RequestMapping(value = "/produto/{clientId}", method = RequestMethod.GET)
-    public ResponseEntity find() {
+    public ResponseEntity find(@PathVariable String clientId) {
         try {
             Iterable<Produto> result = produtoService.findAll();
             return new ResponseEntity<>(result, HttpStatus.OK);
