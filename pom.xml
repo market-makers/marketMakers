@@ -101,7 +101,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <fork>true</fork>
-                    <mainClass>br.com.hackathon.Start</mainClass>
+                    <mainClass>com.marketMakers.MarketMakersApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
@@ -117,7 +117,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>br.com.hackathon.Start</mainClass>
+                            <mainClass>com.marketMakers.MarketMakersApplication</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

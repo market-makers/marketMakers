@@ -11,25 +11,33 @@ public class Nota {
     @Id
     @GeneratedValue
     private Long id;
-    private String codigo;
-    private Date criado;
+    private String codigoNota;
+    private Date data;
 
     public Nota() {
     }
 
-    public String getCodigo() {
-        return codigo;
+    public Long getId() {
+        return id;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Date getCriado() {
-        return criado;
+    public String getCodigoNota() {
+        return codigoNota;
     }
 
-    public void setCriado(Date criado) {
-        this.criado = criado;
+    public void setCodigoNota(String codigoNota) {
+        this.codigoNota = codigoNota;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
     }
 }
