@@ -15,6 +15,10 @@ public class Product {
     private BigDecimal value;
     private Long quantity;
     private String category;
+    @Transient
+    private String averagePrice;
+    @Transient
+    private Integer amount;
 
     public Product() {
     }
@@ -70,6 +74,32 @@ public class Product {
     public String getCategory() {
         return category;
     }
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getAveragePrice() {
+		return averagePrice;
+	}
+
+	public void setAveragePrice(String averagePrice) {
+		this.averagePrice = averagePrice;
+	}
+
+	public Integer getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Integer amount) {
+		this.amount = amount;
+	}
+
+}
 
     public void setCategory(String category) {
         this.category = category;
