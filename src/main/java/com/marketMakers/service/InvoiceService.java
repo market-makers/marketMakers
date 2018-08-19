@@ -14,4 +14,8 @@ public class InvoiceService {
     public Iterable<Invoice> findAll() {
         return repository.findAll();
     }
+
+    public Invoice save(Invoice invoice) {
+        return repository.save(invoice);
+    }
 }

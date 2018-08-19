@@ -19,6 +19,14 @@ public class Product {
     public Product() {
     }
 
+    public Product(String name, String code, BigDecimal value, Long quantity, String category) {
+        this.name = name;
+        this.code = code;
+        this.value = value;
+        this.quantity = quantity;
+        this.category = category;
+    }
+
     public Long getId() {
         return id;
     }
@@ -57,5 +65,13 @@ public class Product {
 
     public void setQuantity(Long quantity) {
         this.quantity = quantity;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

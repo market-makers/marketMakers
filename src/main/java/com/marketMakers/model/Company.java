@@ -22,6 +22,18 @@ public class Company {
     public Company() {
     }
 
+    public Company(String password, Boolean partner, String name, String companyName, String cnpj, String email, String type, String categories, Address address) {
+        this.password = password;
+        this.partner = partner;
+        this.name = name;
+        this.companyName = companyName;
+        this.cnpj = cnpj;
+        this.email = email;
+        this.type = type;
+        this.categories = categories;
+        this.address = address;
+    }
+
     public Long getId() {
         return id;
     }

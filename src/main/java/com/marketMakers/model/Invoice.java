@@ -26,6 +26,14 @@ public class Invoice implements Serializable {
     public Invoice() {
     }
 
+    public Invoice(String code, Date data, Company company, List<Product> products, User user) {
+        this.code = code;
+        this.data = data;
+        this.company = company;
+        this.products = products;
+        this.user = user;
+    }
+    
     public Long getId() {
         return id;
     }
