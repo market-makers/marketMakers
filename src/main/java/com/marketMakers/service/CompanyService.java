@@ -19,6 +19,10 @@ public class CompanyService {
         return repository.save(company);
     }
 
+    public Company findByNameLike(String name) {
+        return repository.findByNameLike(name);
+    }
+
     public Company findByEmailAndPassword(String email, String password) {
         return repository.findByEmailAndPassword(email, password);
     }

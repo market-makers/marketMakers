@@ -43,35 +43,35 @@ public class UserResource {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
     @RequestMapping(value = "/user/rescue", method = RequestMethod.POST)
     public ResponseEntity<?> rescue(@RequestBody Map<String, Object> body) {
         try {
-	 		String promotionId = (body.get("promotionId").toString());
+            String promotionId = (body.get("promotionId").toString());
             User result = userService.rescue(body.get("userId").toString(), Long.valueOf(promotionId));
             if (result != null) {
-            	return new ResponseEntity<>(result, HttpStatus.OK);
-			}else {
-	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			}
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
     @RequestMapping(value = "/user/rescue/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> findRescue(@PathVariable("id") String id) {
         try {
             List<Promotion> result = userService.findRescue(id);
             if (result != null) {
-            	return new ResponseEntity<>(result, HttpStatus.OK);
-			}else {
-	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			}
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
-    
+
+
 }

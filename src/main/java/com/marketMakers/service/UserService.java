@@ -22,7 +22,6 @@ public class UserService {
     UserPromotionRepository userPromotionRepository;
     @Autowired
     PromotionRepository promotionRepository;
-    
 
     public Iterable<User> findAll() {
         return repository.findAll();
@@ -36,39 +35,40 @@ public class UserService {
         return repository.findByUserApp(userApp);
     }
 
-	public User rescue(String userId, Long promotionId) {
-		User user = repository.findByUserApp(userId);
-		Promotion promotion = promotionRepository.findOne(promotionId);
-		if (user != null && promotion != null) {
-			Integer userDots = user.getDots();
-			Integer promotionDots = promotion.getDots();
-			Integer result = userDots - promotionDots;
-			user.setDots(result);
-			repository.save(user);
-			
-			UserPromotion userPromotion = new UserPromotion();
-			userPromotion.setUserId(userId);
-			userPromotion.setPromotionId(promotionId);
-			userPromotionRepository.save(userPromotion);
-			return user;
-		}else {
-			return null;
-		}
-	}
+    public User rescue(String userId, Long promotionId) {
+        User user = repository.findByUserApp(userId);
+        Promotion promotion = promotionRepository.findOne(promotionId);
+        if (user != null && promotion != null) {
+            Integer userDots = user.getDots();
+            Integer promotionDots = promotion.getDots();
+            Integer result = userDots - promotionDots;
+            user.setDots(result);
+            repository.save(user);
 
-	public List<Promotion> findRescue(String id) {
-		List<Promotion> promotions = new ArrayList<>();
-		List<UserPromotion> results = userPromotionRepository.findByUserId(id);
-		if (results != null && !results.isEmpty()) {
-			results.forEach(result ->{
-				Promotion promotion = promotionRepository.findOne(result.getPromotionId());
-				if (promotion != null) {
-					promotions.add(promotion);
-				}
-			});
-			return promotions;
-		}else {
-			return null;
-		}
-	}
+            UserPromotion userPromotion = new UserPromotion();
+            userPromotion.setUserId(userId);
+            userPromotion.setPromotionId(promotionId);
+            userPromotion.setValid(true);
+            userPromotionRepository.save(userPromotion);
+            return user;
+        } else {
+            return null;
+        }
+    }
+
+    public List<Promotion> findRescue(String id) {
+        List<Promotion> promotions = new ArrayList<>();
+        List<UserPromotion> results = userPromotionRepository.findByUserId(id);
+        if (results != null && !results.isEmpty()) {
+            results.forEach(result -> {
+                Promotion promotion = promotionRepository.findOne(result.getPromotionId());
+                if (promotion != null) {
+                    promotions.add(promotion);
+                }
+            });
+            return promotions;
+        } else {
+            return null;
+        }
+    }
 }

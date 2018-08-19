@@ -1,23 +1,17 @@
 package com.marketMakers.resource;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Map;
-
+import com.marketMakers.model.Company;
+import com.marketMakers.model.Promotion;
+import com.marketMakers.service.CompanyService;
+import com.marketMakers.service.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.marketMakers.model.Company;
-import com.marketMakers.model.Promotion;
-import com.marketMakers.service.PromotionService;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 
 @CrossOrigin(maxAge = 3600)
 @RestController
@@ -25,6 +19,8 @@ public class PromotionResource {
 
     @Autowired
     private PromotionService promotionService;
+    @Autowired
+    private CompanyService companyService;
 
     @RequestMapping(value = "/promotion", method = RequestMethod.GET)
     public ResponseEntity<?> findAll() {
@@ -47,25 +43,23 @@ public class PromotionResource {
     }
 
     @RequestMapping(value = "/promotion", method = RequestMethod.POST)
-    public ResponseEntity<?> save(@RequestBody Map<String, Object> body) {
+    public ResponseEntity<?> save(@RequestBody Promotion promotion) {
         try {
-		 	Company company = promotionService.findCompany(body.get("companyId").toString());
-		 	if (company != null) {
-		 		String value = (body.get("value").toString());
-		 		String coupons = (body.get("coupons").toString());
-		 		String exDate = (body.get("exDate").toString());
-		 		String dots = (body.get("dots").toString());
+            Company company = companyService.findByNameLike("Mike Supermercados");
+            if (company != null) {
+                Timestamp data = new Timestamp(new Date().getTime());
 
-		 		DateFormat formatter = new SimpleDateFormat("yy-MM-dd");
-		 		Date date = (Date)formatter.parse(exDate);
-		 		
-		 		Promotion promotion = new Promotion(body.get("description").toString(), Double.valueOf(value), 
-		 											body.get("type").toString(), company, Long.valueOf(coupons), body.get("title").toString(), date, Integer.valueOf(dots)); 
-		 		promotion = promotionService.save(promotion);
-		 		return new ResponseEntity<>(promotion, HttpStatus.OK);
-			}else {
-	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			}
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(data);
+                cal.add(Calendar.DAY_OF_WEEK, 10);
+
+                promotion.setExpiration(new Timestamp(cal.getTime().getTime()));
+                promotion.setCompany(company);
+                promotion = promotionService.save(promotion);
+                return new ResponseEntity<>(promotion, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

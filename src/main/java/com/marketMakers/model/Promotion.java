@@ -1,7 +1,7 @@
 package com.marketMakers.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "promotion")
@@ -16,25 +16,25 @@ public class Promotion {
     private String title;
     private String description;
     private Long coupons;
-    private Date expiration;
+    private Timestamp expiration;
     @ManyToOne
     private Company company;
 
     public Promotion() {
     }
 
-    public Promotion(String description, Double value, String type, Company company, Long coupons, String title, Date exDate, Integer dots) {
-    	this.description = description;
-    	this.value = value;
-    	this.type = type;
-    	this.company = company;
-    	this.coupons = coupons;
-    	this.title = title;
-    	this.expiration = exDate;
-    	this.dots = dots;
-	}
+    public Promotion(String description, Double value, String type, Company company, Long coupons, String title, Timestamp exDate, Integer dots) {
+        this.description = description;
+        this.value = value;
+        this.type = type;
+        this.company = company;
+        this.coupons = coupons;
+        this.title = title;
+        this.expiration = exDate;
+        this.dots = dots;
+    }
 
-	public Long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -82,11 +82,11 @@ public class Promotion {
         this.coupons = coupons;
     }
 
-    public Date getExpiration() {
+    public Timestamp getExpiration() {
         return expiration;
     }
 
-    public void setExpiration(Date expiration) {
+    public void setExpiration(Timestamp expiration) {
         this.expiration = expiration;
     }
 
@@ -98,11 +98,11 @@ public class Promotion {
         this.company = company;
     }
 
-	public Integer getDots() {
-		return dots;
-	}
+    public Integer getDots() {
+        return dots;
+    }
 
-	public void setDots(Integer dots) {
-		this.dots = dots;
-	}
+    public void setDots(Integer dots) {
+        this.dots = dots;
+    }
 }
