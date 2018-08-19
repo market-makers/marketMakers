@@ -1,9 +1,8 @@
 package com.marketMakers.resource;
 
 import com.marketMakers.model.Invoice;
-import com.marketMakers.model.User;
+import com.marketMakers.model.Product;
 import com.marketMakers.service.InvoiceService;
-import com.marketMakers.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,4 +27,7 @@ public class InvoiceResource {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-}
+
+    public void getProdutsOnThefederalIncome() {
+        Product product = new Product();
+    }}

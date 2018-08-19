@@ -9,7 +9,7 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String password;
-    private Boolean patner;
+    private Boolean partner;
     private String name;
     private String companyName;
     private String cnpj;
@@ -38,12 +38,12 @@ public class Company {
         this.password = password;
     }
 
-    public Boolean getPatner() {
-        return patner;
+    public Boolean getPartner() {
+        return partner;
     }
 
-    public void setPatner(Boolean patner) {
-        this.patner = patner;
+    public void setPartner(Boolean partner) {
+        this.partner = partner;
     }
 
     public String getName() {
