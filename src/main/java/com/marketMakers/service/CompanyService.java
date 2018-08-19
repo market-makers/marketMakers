@@ -1,9 +1,7 @@
 package com.marketMakers.service;
 
 import com.marketMakers.model.Company;
-import com.marketMakers.model.Usuario;
 import com.marketMakers.repository.CompanyRepository;
-import com.marketMakers.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

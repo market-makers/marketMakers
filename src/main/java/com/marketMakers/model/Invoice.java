@@ -5,22 +5,22 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-@Entity(name = "nota")
-public class Nota implements Serializable {
+@Entity(name = "invoice")
+public class Invoice implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String codigoNota;
+    private String code;
     private Date data;
 
     @ManyToOne
     private Company company;
 
     @ManyToMany
-    private List<Produto> produtos;
+    private List<Product> products;
 
-    public Nota() {
+    public Invoice() {
     }
 
     public Long getId() {
@@ -31,12 +31,12 @@ public class Nota implements Serializable {
         this.id = id;
     }
 
-    public String getCodigoNota() {
-        return codigoNota;
+    public String getCode() {
+        return code;
     }
 
-    public void setCodigoNota(String codigoNota) {
-        this.codigoNota = codigoNota;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public Date getData() {
@@ -47,19 +47,19 @@ public class Nota implements Serializable {
         this.data = data;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
-    }
-
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
-    }
-
     public Company getCompany() {
         return company;
     }
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }

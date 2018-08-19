@@ -1,8 +1,7 @@
 package com.marketMakers.resource;
 
-import com.marketMakers.model.Nota;
-import com.marketMakers.model.Produto;
-import com.marketMakers.service.NotaService;
+import com.marketMakers.model.Invoice;
+import com.marketMakers.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +11,10 @@ import java.util.Map;
 
 @CrossOrigin(maxAge = 3600)
 @RestController
-public class NotaResource {
+public class InvoiceResource {
 
     @Autowired
-    private NotaService notaService;
+    private InvoiceService invoiceService;
 
     @RequestMapping(value = "/api/usuario/{usuarioId}/nota", method = RequestMethod.POST)
     public ResponseEntity save(
@@ -23,7 +22,7 @@ public class NotaResource {
             @RequestBody(required = true) Map<String, Object> corpo) {
         try {
             //Consultar a receita e retornar as notas
-            Iterable<Nota> result = notaService.findAll();
+            Iterable<Invoice> result = invoiceService.findAll();
             return new ResponseEntity<>(result.iterator().next(), HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
