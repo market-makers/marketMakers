@@ -31,7 +31,7 @@ public class UserResource {
     }
     
     @RequestMapping(value = "/api/user/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> findOne(@PathVariable("id") Long id) {
+    public ResponseEntity<?> findOne(@PathVariable("id") String id) {
         try {
             User result = userService.getUser(id);
             return new ResponseEntity<>(result, HttpStatus.OK);

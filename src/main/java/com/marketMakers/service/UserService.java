@@ -19,7 +19,7 @@ public class UserService {
         return repository.save(user);
     }
 
-	public User getUser(Long id) {
-        return repository.findOne(id.toString());
+	public User getUser(String id) {
+        return repository.findOne(id);
 	}
 }
