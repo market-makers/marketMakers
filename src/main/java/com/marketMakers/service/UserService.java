@@ -19,10 +19,6 @@ public class UserService {
         return repository.save(user);
     }
 
-    public User getUser(String id) {
-        return repository.findById(Long.parseLong(id));
-    }
-
     public User findByUserApp(String userApp) {
         return repository.findByUserApp(userApp);
     }
