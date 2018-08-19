@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 
 import com.marketMakers.model.Promotion;
 import com.marketMakers.model.User;
+import com.marketMakers.model.UserPromotion;
 import com.marketMakers.repository.PromotionRepository;
+import com.marketMakers.repository.UserPromotionRepository;
 import com.marketMakers.repository.UserRepository;
 
 @Service
@@ -13,6 +15,8 @@ public class UserService {
 
     @Autowired
     UserRepository repository;
+    @Autowired
+    UserPromotionRepository userPromotionRepository;
     @Autowired
     PromotionRepository promotionRepository;
     
@@ -38,6 +42,11 @@ public class UserService {
 			Integer result = userDots - promotionDots;
 			user.setDots(result);
 			repository.save(user);
+			
+			UserPromotion userPromotion = new UserPromotion();
+			userPromotion.setUserId(userId);
+			userPromotion.setPromotionId(promotionId);
+			userPromotionRepository.save(userPromotion);
 			return user;
 		}else {
 			return null;
