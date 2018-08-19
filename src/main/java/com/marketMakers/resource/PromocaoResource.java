@@ -1,6 +1,6 @@
 package com.marketMakers.resource;
 
-import java.util.Optional;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.marketMakers.model.Estabelecimento;
 import com.marketMakers.model.Promocao;
 import com.marketMakers.service.PromocaoService;
 
@@ -43,10 +44,17 @@ public class PromocaoResource {
 	    }
 	 
 	 @RequestMapping(value = "/api/promocao", method = RequestMethod.POST)
-	    public ResponseEntity<?> save(@RequestBody Promocao promocao) {
-	        try {
-	        	Promocao result = promocaoService.salvarPromocao(promocao);
-	            return new ResponseEntity<>(result, HttpStatus.OK);
+	    public ResponseEntity<?> save(@RequestBody Map<String, Object> body) {
+		 try {
+			 	Estabelecimento estabelecimento = promocaoService.findEstabelecimento(body.get("estabelecimentoId").toString());
+			 	if (estabelecimento != null) {
+			 		String valor = (body.get("valor").toString());
+			 		Promocao promocao = new Promocao(body.get("descricao").toString(), Double.valueOf(valor), body.get("tipo").toString(), estabelecimento); 
+			 		promocao = promocaoService.save(promocao);
+			 		return new ResponseEntity<>(promocao, HttpStatus.OK);
+				}else {
+		            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+				}
 	        } catch (Exception ex) {
 	            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	        }

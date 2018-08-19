@@ -25,8 +25,9 @@ public class PromocaoService {
 	public Promocao obterPromocao(Long id) {
 		return promocaoRepository.findOne(id);
 	}
-
-	public Promocao salvarPromocao(Promocao promocao) {
+	
+	public Promocao save(Promocao promocao) {
+		promocao.setDataCriacao(new Date());
 		return promocaoRepository.save(promocao);
 	}
 
@@ -49,5 +50,10 @@ public class PromocaoService {
 	public void deletarPromocao(Long id) {
 		Promocao promocao = promocaoRepository.findOne(id);
 		promocaoRepository.delete(promocao);
+	}
+
+	public Estabelecimento findEstabelecimento(String id) {
+		Estabelecimento estabelecimento = estabelecimentoRepository.findOne(Long.valueOf(id));
+		return estabelecimento;
 	}
 }
