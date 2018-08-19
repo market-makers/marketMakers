@@ -19,6 +19,15 @@ public class Address {
     public Address() {
     }
 
+    public Address(String street, String neighborhood, String city, String state, String zipCode, String complement) {
+        this.street = street;
+        this.neighborhood = neighborhood;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+        this.complement = complement;
+    }
+
     public Long getId() {
         return id;
     }
