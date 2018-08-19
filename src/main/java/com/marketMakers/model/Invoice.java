@@ -20,6 +20,9 @@ public class Invoice implements Serializable {
     @ManyToMany
     private List<Product> products;
 
+    @OneToOne
+    private User user;
+
     public Invoice() {
     }
 
@@ -61,5 +64,13 @@ public class Invoice implements Serializable {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

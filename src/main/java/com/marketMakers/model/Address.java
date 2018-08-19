@@ -35,12 +35,12 @@ public class Address {
         this.street = street;
     }
 
-    public String getBairro() {
+    public String getNeighborhood() {
         return neighborhood;
     }
 
-    public void setBairro(String bairro) {
-        this.neighborhood = bairro;
+    public void setNeighborhood(String neighborhood) {
+        this.neighborhood = neighborhood;
     }
 
     public String getCity() {
@@ -65,5 +65,13 @@ public class Address {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public String getComplement() {
+        return complement;
+    }
+
+    public void setComplement(String complement) {
+        this.complement = complement;
     }
 }

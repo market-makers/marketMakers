@@ -8,46 +8,18 @@ public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String password;
+    private Boolean patner;
     private String name;
     private String companyName;
     private String cnpj;
     private String email;
+    private String type;
     private String categories;
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCategories() {
-        return categories;
-    }
-
-    public void setCategories(String categories) {
-        this.categories = categories;
-    }
-
     @OneToOne
     private Address address;
 
     public Company() {
-    }
-
-    public Company(String cnpj, String name, Address address) {
-        this.cnpj = cnpj;
-        this.name = name;
-        this.address = address;
     }
 
     public Long getId() {
@@ -58,12 +30,20 @@ public class Company {
         this.id = id;
     }
 
-    public String getCnpj() {
-        return cnpj;
+    public String getPassword() {
+        return password;
     }
 
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Boolean getPatner() {
+        return patner;
+    }
+
+    public void setPatner(Boolean patner) {
+        this.patner = patner;
     }
 
     public String getName() {
@@ -72,6 +52,46 @@ public class Company {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getCategories() {
+        return categories;
+    }
+
+    public void setCategories(String categories) {
+        this.categories = categories;
     }
 
     public Address getAddress() {

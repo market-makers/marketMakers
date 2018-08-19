@@ -1,6 +1,5 @@
 package com.marketMakers.repository;
 
-import com.marketMakers.model.Promocao;
 import com.marketMakers.model.User;
 import org.springframework.data.repository.CrudRepository;
 
