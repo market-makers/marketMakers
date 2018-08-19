@@ -6,6 +6,7 @@ import com.marketMakers.model.Product;
 import com.marketMakers.service.CompanyService;
 import com.marketMakers.service.InvoiceService;
 import com.marketMakers.service.ProductService;
+import com.marketMakers.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,9 @@ public class InvoiceResource {
     @Autowired
     private CompanyService companyService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value = "/user/{id}/invoice", method = RequestMethod.POST)
     public ResponseEntity save(@PathVariable String id, @RequestBody Map<String, Object> body) {
         try {
@@ -37,9 +41,10 @@ public class InvoiceResource {
 
             Invoice invoice = new Invoice();
             invoice.setProducts(products);
-            invoice.setCode(body.get("invoiceId").toString());
+            invoice.setCode(body.get("invoiceId").toString().substring(0, 10));
             invoice.setData(new Date());
             invoice.setCompany(getCompany());
+            invoice.setUser(userService.findAll().iterator().next());
             invoiceService.save(invoice);
 
             return new ResponseEntity<>(invoice, HttpStatus.OK);
