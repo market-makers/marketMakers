@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.marketMakers.model.Estabelecimento;
-import com.marketMakers.model.Promocao;
+import com.marketMakers.model.Promotion;
 import com.marketMakers.service.PromocaoService;
 
 @CrossOrigin(maxAge = 3600)
@@ -26,7 +26,7 @@ public class PromocaoResource {
 	 @RequestMapping(value = "/api/promocao", method = RequestMethod.GET)
 	    public ResponseEntity<?> findAll() {
 	        try {
-	            Iterable<Promocao> result = promocaoService.obterTodasPromocoes();
+	            Iterable<Promotion> result = promocaoService.obterTodasPromocoes();
 	            return new ResponseEntity<>(result, HttpStatus.OK);
 	        } catch (Exception ex) {
 	            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -36,7 +36,7 @@ public class PromocaoResource {
 	 @RequestMapping(value = "/api/promocao/{id}", method = RequestMethod.GET)
 	    public ResponseEntity<?> findOne(@PathVariable("id") Long id) {
 	        try {
-	        	Promocao result = promocaoService.obterPromocao(id);
+	        	Promotion result = promocaoService.obterPromocao(id);
 	            return new ResponseEntity<>(result, HttpStatus.OK);
 	        } catch (Exception ex) {
 	            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -49,7 +49,7 @@ public class PromocaoResource {
 			 	Estabelecimento estabelecimento = promocaoService.findEstabelecimento(body.get("estabelecimentoId").toString());
 			 	if (estabelecimento != null) {
 			 		String valor = (body.get("valor").toString());
-			 		Promocao promocao = new Promocao(body.get("descricao").toString(), Double.valueOf(valor), body.get("tipo").toString(), estabelecimento); 
+			 		Promotion promocao = new Promotion(body.get("descricao").toString(), Double.valueOf(valor), body.get("tipo").toString(), estabelecimento); 
 			 		promocao = promocaoService.save(promocao);
 			 		return new ResponseEntity<>(promocao, HttpStatus.OK);
 				}else {
@@ -61,9 +61,9 @@ public class PromocaoResource {
 	    }
 	 
 	 @RequestMapping(value = "/api/promocao/{id}", method = RequestMethod.PUT)
-	    public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody Promocao promocao) {
+	    public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody Promotion promocao) {
 	        try {
-	        	Promocao result = promocaoService.atualizarPromocao(id, promocao);
+	        	Promotion result = promocaoService.atualizarPromocao(id, promocao);
 	            return new ResponseEntity<>(result, HttpStatus.OK);
 	        } catch (Exception ex) {
 	            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

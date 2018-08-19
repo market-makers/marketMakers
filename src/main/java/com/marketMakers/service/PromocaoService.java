@@ -5,9 +5,15 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+<<<<<<< Updated upstream
 import com.marketMakers.model.Company;
 import com.marketMakers.model.Promocao;
 import com.marketMakers.repository.CompanyRepository;
+=======
+import com.marketMakers.model.Estabelecimento;
+import com.marketMakers.model.Promotion;
+import com.marketMakers.repository.EstabelecimentoRepository;
+>>>>>>> Stashed changes
 import com.marketMakers.repository.PromocaoRepository;
 
 @Service
@@ -18,21 +24,21 @@ public class PromocaoService {
 	@Autowired
 	private CompanyRepository companyRepository;
 	
-	public Iterable<Promocao> obterTodasPromocoes() {
+	public Iterable<Promotion> obterTodasPromocoes() {
 		return promocaoRepository.findAll();
 	}
 
-	public Promocao obterPromocao(Long id) {
+	public Promotion obterPromocao(Long id) {
 		return promocaoRepository.findOne(id);
 	}
 	
-	public Promocao save(Promocao promocao) {
+	public Promotion save(Promotion promocao) {
 		promocao.setDataCriacao(new Date());
 		return promocaoRepository.save(promocao);
 	}
 
-	public Promocao atualizarPromocao(Long id, Promocao promo) {
-		Promocao promocao = promocaoRepository.findOne(id);
+	public Promotion atualizarPromocao(Long id, Promotion promo) {
+		Promotion promocao = promocaoRepository.findOne(id);
 		if (promocao != null && promo != null) {
 			promocao.setDataEdicao(new Date());
 			promocao.setDescricao(promo.getDescricao());
@@ -48,7 +54,7 @@ public class PromocaoService {
 	}
 
 	public void deletarPromocao(Long id) {
-		Promocao promocao = promocaoRepository.findOne(id);
+		Promotion promocao = promocaoRepository.findOne(id);
 		promocaoRepository.delete(promocao);
 	}
 
