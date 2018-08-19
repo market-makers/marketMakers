@@ -29,7 +29,7 @@ public class IndexResource {
 
     @RequestMapping(value = "/create-data", method = RequestMethod.GET)
     public ResponseEntity createData() {
-        User user = new User("XP532", "Gustavo", "gustavocarvalho_ti@hotmail.com");
+        User user = new User("XP532", "Gustavo", "gustavocarvalho_ti@hotmail.com", 0);
         userRepository.save(user);
 
         Address address = new Address(

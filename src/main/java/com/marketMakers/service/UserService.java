@@ -19,7 +19,11 @@ public class UserService {
         return repository.save(user);
     }
 
-	public User getUser(String id) {
+    public User getUser(String id) {
         return repository.findOne(id);
-	}
+    }
+
+    public User findByUserApp(String userApp) {
+        return repository.findByUserApp(userApp);
+    }
 }

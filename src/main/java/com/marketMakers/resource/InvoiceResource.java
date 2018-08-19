@@ -3,6 +3,7 @@ package com.marketMakers.resource;
 import com.marketMakers.model.Company;
 import com.marketMakers.model.Invoice;
 import com.marketMakers.model.Product;
+import com.marketMakers.model.User;
 import com.marketMakers.service.CompanyService;
 import com.marketMakers.service.InvoiceService;
 import com.marketMakers.service.ProductService;
@@ -37,20 +38,31 @@ public class InvoiceResource {
     @RequestMapping(value = "/user/{id}/invoice", method = RequestMethod.POST)
     public ResponseEntity save(@PathVariable String id, @RequestBody Map<String, Object> body) {
         try {
+            //Fake info
+            User user = userService.findByUserApp(id);
+            Company company = companyService.findAll().iterator().next();
             List<Product> products = getProdutsOnThefederalIncome();
 
             Invoice invoice = new Invoice();
             invoice.setProducts(products);
             invoice.setCode(body.get("invoiceId").toString().substring(0, 10));
             invoice.setData(new Date());
-            invoice.setCompany(getCompany());
-            invoice.setUser(userService.findAll().iterator().next());
+            invoice.setCompany(company);
+            invoice.setUser(user);
             invoiceService.save(invoice);
+
+            //Update dots
+            user.setDots(user.getDots() + calcDots(products));
+            userService.save(user);
 
             return new ResponseEntity<>(invoice, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    public static int calcDots(List<Product> products) {
+        return products.stream().mapToInt(p -> Math.toIntExact(p.getQuantity())).sum();
     }
 
     public List<Product> getProdutsOnThefederalIncome() {
@@ -79,9 +91,5 @@ public class InvoiceResource {
         productService.save(product03);
 
         return Arrays.asList(product01, product02, product03);
-    }
-
-    public Company getCompany() {
-        return companyService.findAll().iterator().next();
     }
 }
