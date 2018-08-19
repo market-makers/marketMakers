@@ -1,9 +1,13 @@
 package com.marketMakers.service;
 
+import com.marketMakers.dto.Category;
 import com.marketMakers.model.Product;
 import com.marketMakers.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ProductService {
@@ -56,7 +60,6 @@ public class ProductService {
 		}
 		return result;
 	}
-
 
     public Product save(Product product) {
         return repository.save(product);
