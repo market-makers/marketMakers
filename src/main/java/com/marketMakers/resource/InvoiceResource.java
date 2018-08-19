@@ -18,10 +18,10 @@ public class InvoiceResource {
     @Autowired
     private InvoiceService invoiceService;
 
-    @RequestMapping(value = "/api/user/{userId}/invoice", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/{userId}/invoice", method = RequestMethod.POST)
     public ResponseEntity save(@PathVariable String userId, Map<String, Object> body) {
         try {
-            System.out.printf(body.get("invoiceId").toString());
+            //System.out.printf(body.get("invoiceId").toString());
             Iterable<Invoice> result = invoiceService.findAll();
             return new ResponseEntity<>(result.iterator().next(), HttpStatus.OK);
         } catch (Exception ex) {

@@ -21,7 +21,7 @@ public class CompanyResource {
     @Autowired
     private CompanyService companyService;
 
-    @RequestMapping(value = "/api/company", method = RequestMethod.POST)
+    @RequestMapping(value = "/company", method = RequestMethod.POST)
     public ResponseEntity save(@RequestBody Company company) {
         try {
             companyService.save(company);
@@ -31,7 +31,7 @@ public class CompanyResource {
         }
     }
 
-    @RequestMapping(value = "/api/company/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/company/login", method = RequestMethod.POST)
     public ResponseEntity getCompany(@RequestBody Map<String, Object> body) {
         try {
             String email = body.get("email").toString();
