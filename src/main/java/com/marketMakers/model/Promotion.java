@@ -22,7 +22,17 @@ public class Promotion {
     public Promotion() {
     }
 
-    public Long getId() {
+    public Promotion(String description, Double value, String type, Company company, Long coupons, String title, Date exDate) {
+    	this.description = description;
+    	this.value = value;
+    	this.type = type;
+    	this.company = company;
+    	this.coupons = coupons;
+    	this.title = title;
+    	this.expiration = exDate;
+	}
+
+	public Long getId() {
         return id;
     }
 

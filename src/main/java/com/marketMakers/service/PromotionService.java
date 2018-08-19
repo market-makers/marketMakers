@@ -16,11 +16,11 @@ public class PromotionService {
     @Autowired
     private CompanyRepository companyRepository;
 
-    public Iterable<Promotion> obterTodasPromocoes() {
+    public Iterable<Promotion> getAllPromotions() {
         return promotionRepository.findAll();
     }
 
-    public Promotion obterPromocao(Long id) {
+    public Promotion getPromotion(Long id) {
         return promotionRepository.findOne(id);
     }
 
@@ -28,28 +28,27 @@ public class PromotionService {
         return promotionRepository.save(promocao);
     }
 
-    public Promotion atualizarPromocao(Long id, Promotion promo) {
+    public Promotion updatePromotion(Long id, Promotion promo) {
         Promotion promocao = promotionRepository.findOne(id);
-        /*if (promocao != null && promo != null) {
-            promocao.setDataEdicao(new Date());
-            promocao.setDescricao(promo.getDescricao());
-            promocao.setTipo(promo.getTipo());
-            promocao.setValor(promo.getValor());
+        if (promocao != null && promo != null) {
+            promocao.setDescription(promo.getDescription());
+            promocao.setType(promo.getType());
+            promocao.setValue(promo.getValue());
             Company company = companyRepository.findOne(promo.getCompany().getId());
             if (company != null) {
                 promocao.setCompany(company);
             }
             promo = promotionRepository.save(promocao);
-        }*/
+        }
         return promo;
     }
 
-    public void deletarPromocao(Long id) {
+    public void deletePromotion(Long id) {
         Promotion promocao = promotionRepository.findOne(id);
         promotionRepository.delete(promocao);
     }
 
-    public Company findEstabelecimento(String id) {
+    public Company findCompany(String id) {
         Company estabelecimento = companyRepository.findOne(Long.valueOf(id));
         return estabelecimento;
     }
