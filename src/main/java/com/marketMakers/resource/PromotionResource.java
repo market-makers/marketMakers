@@ -1,6 +1,8 @@
 package com.marketMakers.resource;
 
-import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +54,12 @@ public class PromotionResource {
 		 		String value = (body.get("value").toString());
 		 		String coupons = (body.get("coupons").toString());
 		 		String exDate = (body.get("exDate").toString());
-		 		Promotion promotion = new Promotion(body.get("description").toString(), Double.valueOf(value), body.get("type").toString(), company, Long.valueOf(coupons), body.get("title").toString(), Date.valueOf(exDate)); 
+		 		
+		 		DateFormat formatter = new SimpleDateFormat("yy-MM-dd");
+		 		Date date = (Date)formatter.parse(exDate);
+		 		
+		 		Promotion promotion = new Promotion(body.get("description").toString(), Double.valueOf(value), 
+		 											body.get("type").toString(), company, Long.valueOf(coupons), body.get("title").toString(), date); 
 		 		promotion = promotionService.save(promotion);
 		 		return new ResponseEntity<>(promotion, HttpStatus.OK);
 			}else {
