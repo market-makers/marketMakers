@@ -13,16 +13,17 @@ import java.util.Map;
 
 @CrossOrigin(maxAge = 3600)
 @RestController
-public class UserResource {
+public class InvoiceResource {
 
     @Autowired
-    private UserService userService;
+    private InvoiceService invoiceService;
 
-    @RequestMapping(value = "/api/user", method = RequestMethod.POST)
-    public ResponseEntity save(@RequestBody User user) {
+    @RequestMapping(value = "/api/user/{userId}/invoice", method = RequestMethod.POST)
+    public ResponseEntity save(@PathVariable String userId, Map<String, Object> body) {
         try {
-            userService.save(user);
-            return new ResponseEntity<>(user, HttpStatus.OK);
+            System.out.printf(body.get("invoiceId").toString());
+            Iterable<Invoice> result = invoiceService.findAll();
+            return new ResponseEntity<>(result.iterator().next(), HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

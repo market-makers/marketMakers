@@ -14,8 +14,7 @@ public class Product {
     private String code;
     private BigDecimal value;
     private Long quantity;
-    @ManyToOne
-    private Category category;
+    private String category;
 
     public Product() {
     }
@@ -58,13 +57,5 @@ public class Product {
 
     public void setQuantity(Long quantity) {
         this.quantity = quantity;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 }
