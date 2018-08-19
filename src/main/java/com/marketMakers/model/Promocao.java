@@ -4,14 +4,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.marketMakers.constant.TipoPromocaoEnum;
 
 @Entity
 @Table(name = "promocao")
@@ -30,8 +27,7 @@ public class Promocao {
 	private String descricao;
 	private Double valor;
 	
-	@Enumerated
-	private TipoPromocaoEnum tipo;
+	private String tipo;
 	
 	@ManyToOne
 	private Estabelecimento estabelecimento;
@@ -40,6 +36,13 @@ public class Promocao {
 		
 	}
 	
+	public Promocao(String descricao, Double valor, String tipo, Estabelecimento estabelecimento) {
+		this.descricao = descricao;
+		this.valor = valor;
+		this.tipo = tipo;
+		this.estabelecimento = estabelecimento;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -79,15 +82,15 @@ public class Promocao {
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
-
-	public TipoPromocaoEnum getTipo() {
+	
+	public String getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(TipoPromocaoEnum tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	
+
 	public Estabelecimento getEstabelecimento() {
 		return estabelecimento;
 	}
