@@ -18,4 +18,8 @@ public class CompanyService {
     public Company save(Company company) {
         return repository.save(company);
     }
+
+    public Company findByEmailAndPassword(String email, String password) {
+        return repository.findByEmailAndPassword(email, password);
+    }
 }

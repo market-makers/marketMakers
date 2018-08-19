@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @CrossOrigin(maxAge = 3600)
 @RestController
 public class CompanyResource {
@@ -18,9 +20,21 @@ public class CompanyResource {
     public ResponseEntity save(@RequestBody Company company) {
         try {
             companyService.save(company);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(company, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/api/company/login", method = RequestMethod.POST)
+    public ResponseEntity getCompany(@RequestBody Map<String, Object> body) {
+        try {
+            String email = body.get("email").toString();
+            String password = body.get("password").toString();
+            Company company = companyService.findByEmailAndPassword(email, password);
+            return new ResponseEntity<>(company, HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }

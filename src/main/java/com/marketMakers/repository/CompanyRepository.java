@@ -1,10 +1,9 @@
 package com.marketMakers.repository;
 
+import com.marketMakers.model.Company;
 import org.springframework.data.repository.CrudRepository;
 
-import com.marketMakers.model.Company;
-
 public interface CompanyRepository extends CrudRepository<Company, Long> {
-	
-	
+
+    Company findByEmailAndPassword(String email, String passwor);
 }
