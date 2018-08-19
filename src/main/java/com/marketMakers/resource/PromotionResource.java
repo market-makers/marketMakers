@@ -26,7 +26,7 @@ public class PromotionResource {
     @Autowired
     private PromotionService promotionService;
 
-    @RequestMapping(value = "/api/promotion", method = RequestMethod.GET)
+    @RequestMapping(value = "/promotion", method = RequestMethod.GET)
     public ResponseEntity<?> findAll() {
         try {
             Iterable<Promotion> result = promotionService.getAllPromotions();
@@ -36,7 +36,7 @@ public class PromotionResource {
         }
     }
 
-    @RequestMapping(value = "/api/promotion/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/promotion/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> findOne(@PathVariable("id") Long id) {
         try {
             Promotion result = promotionService.getPromotion(id);
@@ -46,7 +46,7 @@ public class PromotionResource {
         }
     }
 
-    @RequestMapping(value = "/api/promotion", method = RequestMethod.POST)
+    @RequestMapping(value = "/promotion", method = RequestMethod.POST)
     public ResponseEntity<?> save(@RequestBody Map<String, Object> body) {
         try {
 		 	Company company = promotionService.findCompany(body.get("companyId").toString());
@@ -70,7 +70,7 @@ public class PromotionResource {
         }
     }
 
-    @RequestMapping(value = "/api/promotion/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/promotion/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody Promotion promocao) {
         try {
             Promotion result = promotionService.updatePromotion(id, promocao);
@@ -80,7 +80,7 @@ public class PromotionResource {
         }
     }
 
-    @RequestMapping(value = "/api/promotion/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/promotion/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable("id") Long id) {
         try {
             promotionService.deletePromotion(id);

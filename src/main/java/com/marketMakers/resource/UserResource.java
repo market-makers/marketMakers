@@ -20,7 +20,7 @@ public class UserResource {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/api/user", method = RequestMethod.POST)
+    @RequestMapping(value = "/user", method = RequestMethod.POST)
     public ResponseEntity save(@RequestBody User user) {
         try {
             userService.save(user);
@@ -30,7 +30,7 @@ public class UserResource {
         }
     }
     
-    @RequestMapping(value = "/api/user/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> findOne(@PathVariable("id") String id) {
         try {
             User result = userService.getUser(id);
