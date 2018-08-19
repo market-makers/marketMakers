@@ -38,6 +38,8 @@ public class InvoiceResource {
     @RequestMapping(value = "/user/{id}/invoice", method = RequestMethod.POST)
     public ResponseEntity save(@PathVariable String id, @RequestBody Map<String, Object> body) {
         try {
+            System.out.println("UserId: " + id);
+
             //Fake info
             User user = userService.findByUserApp(id);
             Company company = companyService.findAll().iterator().next();
