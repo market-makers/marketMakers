@@ -1,5 +1,8 @@
 package com.marketMakers.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +51,22 @@ public class UserService {
 			userPromotion.setPromotionId(promotionId);
 			userPromotionRepository.save(userPromotion);
 			return user;
+		}else {
+			return null;
+		}
+	}
+
+	public List<Promotion> findRescue(String id) {
+		List<Promotion> promotions = new ArrayList<>();
+		List<UserPromotion> results = userPromotionRepository.findByUserId(id);
+		if (results != null && !results.isEmpty()) {
+			results.forEach(result ->{
+				Promotion promotion = promotionRepository.findOne(result.getPromotionId());
+				if (promotion != null) {
+					promotions.add(promotion);
+				}
+			});
+			return promotions;
 		}else {
 			return null;
 		}

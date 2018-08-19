@@ -1,5 +1,6 @@
 package com.marketMakers.resource;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.marketMakers.model.Promotion;
 import com.marketMakers.model.User;
 import com.marketMakers.service.UserService;
 
@@ -47,6 +49,20 @@ public class UserResource {
         try {
 	 		String promotionId = (body.get("promotionId").toString());
             User result = userService.rescue(body.get("userId").toString(), Long.valueOf(promotionId));
+            if (result != null) {
+            	return new ResponseEntity<>(result, HttpStatus.OK);
+			}else {
+	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    @RequestMapping(value = "/user/rescue/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> findRescue(@PathVariable("id") String id) {
+        try {
+            List<Promotion> result = userService.findRescue(id);
             if (result != null) {
             	return new ResponseEntity<>(result, HttpStatus.OK);
 			}else {
