@@ -12,6 +12,7 @@ public class Promotion {
     private Long id;
     private String type;
     private Double value;
+    private Integer dots;
     private String title;
     private String description;
     private Long coupons;
@@ -22,7 +23,7 @@ public class Promotion {
     public Promotion() {
     }
 
-    public Promotion(String description, Double value, String type, Company company, Long coupons, String title, Date exDate) {
+    public Promotion(String description, Double value, String type, Company company, Long coupons, String title, Date exDate, Integer dots) {
     	this.description = description;
     	this.value = value;
     	this.type = type;
@@ -30,6 +31,7 @@ public class Promotion {
     	this.coupons = coupons;
     	this.title = title;
     	this.expiration = exDate;
+    	this.dots = dots;
 	}
 
 	public Long getId() {
@@ -95,4 +97,12 @@ public class Promotion {
     public void setCompany(Company company) {
         this.company = company;
     }
+
+	public Integer getDots() {
+		return dots;
+	}
+
+	public void setDots(Integer dots) {
+		this.dots = dots;
+	}
 }

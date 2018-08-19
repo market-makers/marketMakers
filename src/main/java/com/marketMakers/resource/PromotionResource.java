@@ -54,12 +54,13 @@ public class PromotionResource {
 		 		String value = (body.get("value").toString());
 		 		String coupons = (body.get("coupons").toString());
 		 		String exDate = (body.get("exDate").toString());
-		 		
+		 		String dots = (body.get("dots").toString());
+
 		 		DateFormat formatter = new SimpleDateFormat("yy-MM-dd");
 		 		Date date = (Date)formatter.parse(exDate);
 		 		
 		 		Promotion promotion = new Promotion(body.get("description").toString(), Double.valueOf(value), 
-		 											body.get("type").toString(), company, Long.valueOf(coupons), body.get("title").toString(), date); 
+		 											body.get("type").toString(), company, Long.valueOf(coupons), body.get("title").toString(), date, Integer.valueOf(dots)); 
 		 		promotion = promotionService.save(promotion);
 		 		return new ResponseEntity<>(promotion, HttpStatus.OK);
 			}else {

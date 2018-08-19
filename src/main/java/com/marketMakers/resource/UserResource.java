@@ -1,5 +1,7 @@
 package com.marketMakers.resource;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,4 +41,21 @@ public class UserResource {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
+    @RequestMapping(value = "/user/rescue", method = RequestMethod.POST)
+    public ResponseEntity<?> rescue(@RequestBody Map<String, Object> body) {
+        try {
+	 		String promotionId = (body.get("promotionId").toString());
+            User result = userService.rescue(body.get("userId").toString(), Long.valueOf(promotionId));
+            if (result != null) {
+            	return new ResponseEntity<>(result, HttpStatus.OK);
+			}else {
+	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    
 }
