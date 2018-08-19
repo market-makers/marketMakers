@@ -6,10 +6,9 @@ import com.marketMakers.service.NotaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @CrossOrigin(maxAge = 3600)
 @RestController
@@ -19,7 +18,9 @@ public class NotaResource {
     private NotaService notaService;
 
     @RequestMapping(value = "/api/usuario/{usuarioId}/nota", method = RequestMethod.POST)
-    public ResponseEntity save() {
+    public ResponseEntity save(
+            @PathVariable String usuarioId,
+            @RequestBody(required = true) Map<String, Object> corpo) {
         try {
             //Consultar a receita e retornar as notas
             Iterable<Nota> result = notaService.findAll();
@@ -28,6 +29,4 @@ public class NotaResource {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
-    
 }

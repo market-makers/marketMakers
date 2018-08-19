@@ -15,7 +15,7 @@ public class Nota implements Serializable {
     private Date data;
 
     @ManyToOne
-    private Estabelecimento estabelecimento;
+    private Company company;
 
     @ManyToMany
     private List<Produto> produtos;
@@ -55,11 +55,11 @@ public class Nota implements Serializable {
         this.produtos = produtos;
     }
 
-    public Estabelecimento getEstabelecimento() {
-        return estabelecimento;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setEstabelecimento(Estabelecimento estabelecimento) {
-        this.estabelecimento = estabelecimento;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 }

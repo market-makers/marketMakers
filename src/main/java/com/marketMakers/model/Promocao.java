@@ -16,108 +16,108 @@ import com.marketMakers.constant.TipoPromocaoEnum;
 @Entity
 @Table(name = "promocao")
 public class Promocao {
-	
-	@Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	
+    private Long id;
+
     @Column(name = "data_criacao")
     private Date dataCriacao;
 
     @Column(name = "data_edicao")
     private Date dataEdicao;
-    
-	private String descricao;
-	private Double valor;
-	
-	@Enumerated
-	private TipoPromocaoEnum tipo;
-	
-	@ManyToOne
-	private Estabelecimento estabelecimento;
-	
-	public Promocao() {
-		
-	}
-	
-	public Long getId() {
-		return id;
-	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    private String descricao;
+    private Double valor;
 
-	public Date getDataCriacao() {
-		return dataCriacao;
-	}
+    @Enumerated
+    private TipoPromocaoEnum tipo;
 
-	public void setDataCriacao(Date dataCriacao) {
-		this.dataCriacao = dataCriacao;
-	}
+    @ManyToOne
+    private Company company;
 
-	public Date getDataEdicao() {
-		return dataEdicao;
-	}
+    public Promocao() {
 
-	public void setDataEdicao(Date dataEdicao) {
-		this.dataEdicao = dataEdicao;
-	}
+    }
 
-	public String getDescricao() {
-		return descricao;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Double getValor() {
-		return valor;
-	}
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
 
-	public void setValor(Double valor) {
-		this.valor = valor;
-	}
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
 
-	public TipoPromocaoEnum getTipo() {
-		return tipo;
-	}
+    public Date getDataEdicao() {
+        return dataEdicao;
+    }
 
-	public void setTipo(TipoPromocaoEnum tipo) {
-		this.tipo = tipo;
-	}
-	
-	public Estabelecimento getEstabelecimento() {
-		return estabelecimento;
-	}
+    public void setDataEdicao(Date dataEdicao) {
+        this.dataEdicao = dataEdicao;
+    }
 
-	public void setEstabelecimento(Estabelecimento estabelecimento) {
-		this.estabelecimento = estabelecimento;
-	}
+    public String getDescricao() {
+        return descricao;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Promocao other = (Promocao) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
+
+    public TipoPromocaoEnum getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoPromocaoEnum tipo) {
+        this.tipo = tipo;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Promocao other = (Promocao) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
+    }
 }
