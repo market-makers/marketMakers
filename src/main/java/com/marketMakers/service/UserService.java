@@ -20,7 +20,7 @@ public class UserService {
     }
 
     public User getUser(String id) {
-        return repository.findOne(id);
+        return repository.findById(Long.parseLong(id));
     }
 
     public User findByUserApp(String userApp) {
